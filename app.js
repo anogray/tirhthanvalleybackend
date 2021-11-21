@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 import mongoose from "mongoose";
 import config from "./config.js";
+import property from "./routes/propertyRoute.js";
 
 
 const app = express();
@@ -20,6 +21,8 @@ mongoose.connect(config.DB_URL ,
     });
 
 app.get("/",(req,res)=> res.status(200).json({success:true}));
+
+app.use("/property",property);
 
 app.listen(process.env.PORT, () => {
     console.log('The application is running on localhost 4000');

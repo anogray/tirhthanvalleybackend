@@ -2,11 +2,15 @@ import mongoose from 'mongoose';
 
 const propertySchema = new mongoose.Schema({
     fullName: { type: String, required: true },
+    placeName:{type : String, required:true},
     facilities : {type : Object},
-    stateLocation:{ type: String },
-    city:{ type: String },
+    state:{ type: String},
+    village:{type:String},
+    plusCode:{ type: String },
     pincode:{ type: String },
-    mapLocation : { type: String }
+    mapLocation : { type: String },
+    mapImgUrl : {type:String},
+    imgs_url:{type:Array}
   });
   
   const Property = mongoose.model('Property', propertySchema);
