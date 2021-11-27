@@ -33,7 +33,30 @@ router.get("/", async(req,res)=>{
 
     }catch(err){
         console.log("gotErrorPropertyName",err.message);
-        return res.status(200).json({status:false, errorMessage:err.message});
+        return res.status(404).json({status:false, errorMessage:err.message});
+    }
+})
+
+router.get("/category", async(req,res)=>{
+    
+    const {category} = req.query;
+    console.log("gotPropertyCategory",category);
+    if(!category){
+        throw Error("Need Property Name !")
+    }
+
+    try{
+        
+       const properyties = await Property.find({category :{ $in : [`${category}`]}})
+       if(!properyties.length){
+        throw Error("Properyties don't exists!")
+       }
+       return res.status(200).json({success:true, dataMessage:properyties});
+
+
+    }catch(err){
+        console.log("gotErrorPropertyCategory",err.message);
+        return res.status(404).json({success:false, errorMessage:err.message});
     }
 })
 

@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 const propertySchema = new mongoose.Schema({
     fullName: { type: String, required: true },
     placeName:{type : String, required:true},
+    category:{type:Array},
     facilities : {type : Object},
     state:{ type: String},
     village:{type:String},
